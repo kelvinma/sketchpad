@@ -8,7 +8,11 @@ defmodule Sketchpad.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
+      {Registry, keys: :unique, name: Sketchpad.Registry},
       SketchpadWeb.Endpoint,
+      SketchpadWeb.Presence,
+      {Sketchpad.Pad, pad_id: "lobby"}
+      # worker(Counter, [0])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
